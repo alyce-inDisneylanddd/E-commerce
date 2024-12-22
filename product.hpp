@@ -1,7 +1,7 @@
-#include "productList.h"
+
 #include <iostream>
 #include <fstream>
-#include 
+#include <sstream>
 
 using namespace std;
 
@@ -66,8 +66,27 @@ class ProductList {
             while (getline(productList_file, text)) {
                 stringstream ss(text);
                 Product_information product;
+                string token;
+
+                // get ID of product
+                getline(ss, token, ',');
+                product.product_ID = stoi(token); // convert from string to interger 
+
+                // get product name
+                getline(ss,product.product_name, ',');
+
+                // get product quantity
+                getline(ss, token, ',');
+                product.product_quantity = stoi(token);
+
+                // get product price 
+                getline(ss, token, ',');
+                product.product_price = stof(token);
+
+                add(product);
 
             }
+            productList_file
 
         }
 };
